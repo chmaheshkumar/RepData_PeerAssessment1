@@ -21,13 +21,22 @@ data <- read.csv("activity.csv")
 ```
 
 ## What is mean total number of steps taken per day?
-```{r setup, include=FALSE}
+```{r pressure, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+num_steps<-aggregate(steps~date,data,sum)
+     hist(num_steps$steps)
+     col ='gray'
+     main ='Number of steps taken per day'
+     xlab = 'Steps'
 
 ```
 ## What is the average daily activity pattern?
 
+```{r}
+
+
+```
 
 
 ## Imputing missing values
