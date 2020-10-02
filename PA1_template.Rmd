@@ -21,15 +21,22 @@ data <- read.csv("activity.csv")
 ```
 
 ## What is mean total number of steps taken per day?
-```{r pressure, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 num_steps<-aggregate(steps~date,data,sum)
-     hist(num_steps$steps)
-     col ='gray'
-     main ='Number of steps taken per day'
-     xlab = 'Steps'
+     hist(num_steps$steps,
+     col ="gray",
+     main ="Number of steps taken per day",
+     xlab = "Steps")
 
+```
+## Mean and Median
+```{r}
+mean_steps<- mean(num_steps$steps)
+cat("Mean",mean_steps,"\n")
+median_steps<-median(num_steps$steps)
+cat("Median",median_steps)
 ```
 ## What is the average daily activity pattern?
 
