@@ -9,6 +9,7 @@ output:
 ## Loading and preprocessing the data
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(plyr)
 
 if (!file.exists("activity.csv") )
     {
@@ -64,6 +65,21 @@ cat("Max number of steps",max_steps)
 ## Imputing missing values
 ```{r setup, include= FALSE}
 knitr::opts_chunk$set(echo=TRUE)
+
+missing_values<-sum(is.na(data))
+cat("Missing values",missing_values)
+
+clean_data <- ddply(activity, ~interval, function(item) {
+
+        item$steps[is.na(item$steps)] <- round(mean(item$steps, na.rm = TRUE));
+        return(item);
+    })
+steps_cinterval<-aggregate(steps~interval,clean_data,mean)
+plot(steps_cinterval$interval,steps_cinterval$steps,
+     type="l",
+     xlab = "Interval",
+     ylab = "Steps",
+     main = "Average number of daily steps")
 
 ```
 
