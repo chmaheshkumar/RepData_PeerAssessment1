@@ -32,22 +32,40 @@ num_steps<-aggregate(steps~date,data,sum)
 
 ```
 ## Mean and Median
-```{r}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
 mean_steps<- mean(num_steps$steps)
 cat("Mean",mean_steps,"\n")
 median_steps<-median(num_steps$steps)
 cat("Median",median_steps)
+
 ```
 ## What is the average daily activity pattern?
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 
-```{r}
-
+steps_interval<-aggregate(steps~interval,data,mean)
+plot(steps_interval$interval,steps_interval$steps,
+     type="l",
+     xlab = "Interval",
+     ylab = "Steps",
+     main = "Average number of daily steps")
 
 ```
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
 
+max_steps<- steps_interval[which.max(steps_interval$steps),1]
+cat("Max number of steps",max_steps)
+
+```
 ## Imputing missing values
+```{r setup, include= FALSE}
+knitr::opts_chunk$set(echo=TRUE)
 
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
